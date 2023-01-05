@@ -19,35 +19,58 @@ protocol AnyView {
 
 class CryptoViewController : UIViewController, AnyView, UITableViewDelegate, UITableViewDataSource {
     
+    var presenter: AnyPresenter?
+    var cryptos : [Crypto] = []
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return cryptos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        return UITableViewCell()
     }
     
-    var presenter: AnyPresenter?
+   
     
-    private let tableView: UITableView {
+    private var tableView: UITableView {
         let table = UITableView()
         table.register(UITableView.self, forCellReuseIdentifier: "cell")
         table.isHidden = true
         return table
     }
     
+    private let messageLabel : UILabel = {
+        let label = UILabel()
+        label.isHidden = false
+        label.text = "Yükleniyor" // Loading Data...
+        label.font = UIFont.systemFont(ofSize: 24)
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(tableView)
+        view.addSubview(messageLabel)
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
     
     override func viewDidLayoutSubviews() {
-        <#code#>
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds // Ekran boyutu kadar
+        messageLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 25, width: 200, height: 50)
+        
     }
     
     func update(with cryptos: [Crypto]) {
-        
+        DispatchQueue.main.async {
+            self.cryptos = cryptos
+            self.messageLabel.isHidden = true
+            self.tableView.reloadData()
+            self.tableView.isHidden = false
+        }
     }
     
     func update (with error: String) {
