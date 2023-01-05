@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum NetworkError : Error {
+    case NetworkFailed
+    case ParsingFailed
+}
+
 protocol AnyPresenter {
     var router : AnyRouter? {get set}
     var interactor : AnyInteractor? {get set}
