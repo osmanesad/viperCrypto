@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Crypto: Decodable {
+    let curency: String
+    let price: String
+}
