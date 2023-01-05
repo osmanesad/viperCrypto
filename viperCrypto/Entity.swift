@@ -8,6 +8,6 @@
 import Foundation
 
 struct Crypto: Decodable {
-    let curency: String
+    let currency: String
     let price: String
 }
