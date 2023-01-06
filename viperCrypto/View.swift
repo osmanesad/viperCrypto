@@ -25,7 +25,7 @@ class DetailViewController : UIViewController {
     private let currencyLabel : UILabel = {
        let label = UILabel()
         label.isHidden = true
-        label.text = "Currency Label"
+        label.text = "Currency"
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
         label.textAlignment = .center
@@ -35,7 +35,7 @@ class DetailViewController : UIViewController {
     private let priceLabel : UILabel = {
        let label = UILabel()
         label.isHidden = true
-        label.text = "Price Label"
+        label.text = "Price"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
         label.textAlignment = .center
@@ -44,7 +44,7 @@ class DetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .clear
         view.addSubview(currencyLabel)
         view.addSubview(priceLabel)
        
@@ -79,7 +79,7 @@ class CryptoViewController : UIViewController, AnyView, UITableViewDelegate, UIT
     private let messageLabel : UILabel = {
        let label = UILabel()
         label.isHidden = false
-        label.text = "Downloading ..."
+        label.text = "Loading Data..."
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
         label.textAlignment = .center
@@ -88,7 +88,7 @@ class CryptoViewController : UIViewController, AnyView, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        view.backgroundColor = .green
         view.addSubview(tableView)
         view.addSubview(messageLabel)
         tableView.delegate = self
@@ -130,7 +130,7 @@ class CryptoViewController : UIViewController, AnyView, UITableViewDelegate, UIT
         content.text = cryptos[indexPath.row].currency
         content.secondaryText = cryptos[indexPath.row].price
         cell.contentConfiguration = content
-        cell.backgroundColor = .magenta
+        cell.backgroundColor = .clear
         return cell
     }
     

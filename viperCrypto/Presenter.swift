@@ -44,7 +44,7 @@ class CryptoPresenter : AnyPresenter {
             case .success(let cryptos):
                 view?.update(with: cryptos)
             case .failure(_):
-                view?.update(with: "Try again later")
+                view?.update(with: "Try again")
         }
     }
     
